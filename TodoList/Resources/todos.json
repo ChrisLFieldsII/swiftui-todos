@@ -1,0 +1,27 @@
+[
+    {
+        "id": "1",
+        "description": "Clean up room",
+        "isDone": false
+    },
+    {
+        "id": "2",
+        "description": "Clean up kitchen",
+        "isDone": false
+    },
+    {
+        "id": "3",
+        "description": "Clean up life",
+        "isDone": false
+    },
+    {
+        "id": "4",
+        "description": "Get good at SwiftUI",
+        "isDone": false
+    },
+    {
+        "id": "5",
+        "description": "Be lazy",
+        "isDone": true
+    }
+]
