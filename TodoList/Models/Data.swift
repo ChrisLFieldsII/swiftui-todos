@@ -8,7 +8,7 @@
 
 import Foundation
 
-var todosData: [Todo] = load("todos.json")
+var todosData: [String:[Todo]] = load("todos.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data
