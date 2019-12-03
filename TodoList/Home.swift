@@ -13,6 +13,12 @@ struct Home: View {
             
     var calendarManager = RKManager(calendar: Calendar.current, minimumDate: Date().addingTimeInterval(-60*60*24*365), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0)
     
+    var saveTodosBtn: some View {
+        Button(action: {UserData.saveTodos(todosToSave: self.userData.todos)}) {
+            Text("Save")
+        }
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -23,6 +29,7 @@ struct Home: View {
                    }
             }
             .navigationBarTitle("Home")
+            .navigationBarItems(trailing: saveTodosBtn)
         }
     }
 }

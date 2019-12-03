@@ -22,7 +22,6 @@
 		887BF2E323877A59004C7FFB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 887BF2E223877A59004C7FFB /* Preview Assets.xcassets */; };
 		887BF2E623877A59004C7FFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 887BF2E423877A59004C7FFB /* LaunchScreen.storyboard */; };
 		887BF2EF23878CE1004C7FFB /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887BF2EE23878CE1004C7FFB /* Todo.swift */; };
-		887BF2F42387906D004C7FFB /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887BF2F32387906D004C7FFB /* Data.swift */; };
 		887BF2F62387911B004C7FFB /* todos.json in Resources */ = {isa = PBXBuildFile; fileRef = 887BF2F52387911B004C7FFB /* todos.json */; };
 		887BF2FA238793E8004C7FFB /* TodosList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887BF2F9238793E8004C7FFB /* TodosList.swift */; };
 		887BF2FC23879720004C7FFB /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887BF2FB23879720004C7FFB /* UserData.swift */; };
@@ -47,7 +46,6 @@
 		887BF2E523877A59004C7FFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		887BF2E723877A59004C7FFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		887BF2EE23878CE1004C7FFB /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
-		887BF2F32387906D004C7FFB /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		887BF2F52387911B004C7FFB /* todos.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = todos.json; sourceTree = "<group>"; };
 		887BF2F9238793E8004C7FFB /* TodosList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosList.swift; sourceTree = "<group>"; };
 		887BF2FB23879720004C7FFB /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -127,7 +125,6 @@
 			isa = PBXGroup;
 			children = (
 				887BF2EE23878CE1004C7FFB /* Todo.swift */,
-				887BF2F32387906D004C7FFB /* Data.swift */,
 				887BF2FB23879720004C7FFB /* UserData.swift */,
 			);
 			path = Models;
@@ -217,7 +214,6 @@
 				887BF2FC23879720004C7FFB /* UserData.swift in Sources */,
 				887BF2D723877A54004C7FFB /* AppDelegate.swift in Sources */,
 				88262B3523956F5A00BC4FD6 /* RKManager.swift in Sources */,
-				887BF2F42387906D004C7FFB /* Data.swift in Sources */,
 				88262B382395720300BC4FD6 /* TestCalendar.swift in Sources */,
 				887BF2D923877A54004C7FFB /* SceneDelegate.swift in Sources */,
 				88262B3023956F5A00BC4FD6 /* RKCell.swift in Sources */,

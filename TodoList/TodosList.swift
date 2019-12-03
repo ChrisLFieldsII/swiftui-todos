@@ -106,13 +106,18 @@ struct TodosList: View {
                     TextField("Add Todo", text: self.$todoDescription, onCommit: self.addTodo)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .modifier(ClearTextButton(text: self.$todoDescription))
-                    List {
-                        ForEach(self.userData.todos[self.dateKey] ?? []) { todo in
-                            Toggle(todo.description, isOn: self.getToggleBinding(todo: todo))
-                                .disabled(true)
+                    if (self.userData.todos[self.dateKey] ?? []).count > 0 {
+                        List {
+                            ForEach(self.userData.todos[self.dateKey] ?? []) { todo in
+                                Toggle(todo.description, isOn: self.getToggleBinding(todo: todo))
+                                    .disabled(true)
+                            }
+                            .onDelete(perform: self.deleteTodo)
+                            .onMove(perform: self.moveTodo)
                         }
-                        .onDelete(perform: self.deleteTodo)
-                        .onMove(perform: self.moveTodo)
+                    }
+                    else {
+                        NoTodos()
                     }
                 }
             }
@@ -124,24 +129,29 @@ struct TodosList: View {
                     TextField("Add Todo", text: self.$todoDescription, onCommit: self.addTodo)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .modifier(ClearTextButton(text: self.$todoDescription))
-                    ScrollView {
-                        ForEach(self.userData.todos[self.dateKey]?.indices ?? 0..<0) { todoIndex in
-                            VStack {
-                                HStack {
-                                    Button(action: {
-                                        let currTodo = self.userData.todos[self.dateKey]?[todoIndex]
-                                        self.todoDescription = currTodo?.description ?? ""
-                                        self.selectedTodo = currTodo
-                                        self.selectedTodoIndex = todoIndex
-                                    }) {
-                                        Text(self.userData.todos[self.dateKey]?[todoIndex].description ?? "N/A")
+                    if (self.userData.todos[self.dateKey] ?? []).count > 0 {
+                        ScrollView {
+                            ForEach(self.userData.todos[self.dateKey]?.indices ?? 0..<0) { todoIndex in
+                                VStack {
+                                    HStack {
+                                        Button(action: {
+                                            let currTodo = self.userData.todos[self.dateKey]?[todoIndex]
+                                            self.todoDescription = currTodo?.description ?? ""
+                                            self.selectedTodo = currTodo
+                                            self.selectedTodoIndex = todoIndex
+                                        }) {
+                                            Text(self.userData.todos[self.dateKey]?[todoIndex].description ?? "N/A")
+                                        }
+                                        Toggle("", isOn: self.getToggleBinding(todoIndex: todoIndex).animation(.spring()))
                                     }
-                                    Toggle("", isOn: self.getToggleBinding(todoIndex: todoIndex))
+                                    Divider()
                                 }
-                                Divider()
+                                    .padding(.horizontal, 10)
                             }
-                                .padding(.horizontal, 10)
                         }
+                    }
+                    else {
+                        NoTodos()
                     }
                 }
             }
@@ -168,6 +178,16 @@ struct ClearTextButton: ViewModifier {
                 }
                 .padding(.trailing, 8)
             }
+        }
+    }
+}
+
+struct NoTodos: View {
+    var body: some View {
+        VStack {
+            Spacer()
+            Text("No Todos")
+            Spacer()
         }
     }
 }
