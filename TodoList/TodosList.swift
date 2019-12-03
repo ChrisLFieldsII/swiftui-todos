@@ -20,6 +20,10 @@ struct TodosList: View {
         return Date.getDateFromKey(key: self.dateKey)
     }
     
+    var todos: [Todo] {
+        return self.userData.todos[self.dateKey] ?? []
+    }
+    
     func dismissKeyboard() {
         UIApplication.shared.endEditing()
     }
@@ -102,7 +106,7 @@ struct TodosList: View {
             // EDITING
             if self.$editMode.wrappedValue == .active {
                 VStack {
-                    DateHeader(date: self.getFormattedDate(date: self.date ?? Date()))
+                    DateHeader(date: self.getFormattedDate(date: self.date ?? Date()), todos: self.todos)
                     TextField("Add Todo", text: self.$todoDescription, onCommit: self.addTodo)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .modifier(ClearTextButton(text: self.$todoDescription))
@@ -125,7 +129,7 @@ struct TodosList: View {
             // NOT EDITING
             else {
                 VStack {
-                    DateHeader(date: self.getFormattedDate(date: self.date ?? Date()))
+                    DateHeader(date: self.getFormattedDate(date: self.date ?? Date()), todos: self.todos)
                     TextField("Add Todo", text: self.$todoDescription, onCommit: self.addTodo)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .modifier(ClearTextButton(text: self.$todoDescription))
@@ -182,7 +186,7 @@ struct ClearTextButton: ViewModifier {
     }
 }
 
-struct NoTodos: View {
+fileprivate struct NoTodos: View {
     var body: some View {
         VStack {
             Spacer()
@@ -192,27 +196,28 @@ struct NoTodos: View {
     }
 }
 
-struct DateHeader: View {
+fileprivate struct DateHeader: View {
     var date: String
+    var todos: [Todo]
+    
+    var numComplete: Int {
+        let _numComplete = todos.filter { $0.isDone == true }
+        return _numComplete.count
+    }
     
     var body: some View {
         HStack {
+            Text("\(self.numComplete)/\(self.todos.count)")
             Spacer()
-
             Button(action: {
                 UIApplication.shared.endEditing()
             }) {
                 Text(date)
             }
-            .foregroundColor(.blue)
-                .padding(.top, 10)
-
             Spacer()
-
             EditButton()
-                .padding(.trailing, 10)
-                .padding(.top, 10)
         }
+        .padding(.all, 10)
     }
 }
 

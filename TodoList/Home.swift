@@ -13,23 +13,16 @@ struct Home: View {
             
     var calendarManager = RKManager(calendar: Calendar.current, minimumDate: Date().addingTimeInterval(-60*60*24*365), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0)
     
-    var saveTodosBtn: some View {
-        Button(action: {UserData.saveTodos(todosToSave: self.userData.todos)}) {
-            Text("Save")
-        }
-    }
-    
     var body: some View {
         NavigationView {
             VStack {
                 RKViewController(isPresented: self.$userData.showCalendar, rkManager: self.calendarManager, userData: self.userData)
-                    .sheet(isPresented: self.$userData.showTodos) {
+                    .sheet(isPresented: self.$userData.showTodos, onDismiss: { UserData.saveTodos(todosToSave: self.userData.todos) }) {
                         TodosList(dateKey: Date.getKeyFromDate(date: self.userData.selectedDate ?? Date()))
                             .environmentObject(self.userData)
                    }
             }
             .navigationBarTitle("Home")
-            .navigationBarItems(trailing: saveTodosBtn)
         }
     }
 }
