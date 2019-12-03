@@ -24,6 +24,56 @@
             "id": "5",
             "description": "Be lazy",
             "isDone": true
+        },
+        {
+            "id": "6",
+            "description": "Clean up room",
+            "isDone": false
+        },
+        {
+            "id": "7",
+            "description": "Clean up kitchen",
+            "isDone": false
+        },
+        {
+            "id": "8",
+            "description": "Clean up life",
+            "isDone": false
+        },
+        {
+            "id": "9",
+            "description": "Get good at SwiftUI",
+            "isDone": false
+        },
+        {
+            "id": "10",
+            "description": "Be lazy",
+            "isDone": true
+        },
+        {
+            "id": "12",
+            "description": "Clean up room",
+            "isDone": false
+        },
+        {
+            "id": "12",
+            "description": "Clean up kitchen",
+            "isDone": false
+        },
+        {
+            "id": "13",
+            "description": "Clean up life",
+            "isDone": false
+        },
+        {
+            "id": "14",
+            "description": "Get good at SwiftUI",
+            "isDone": false
+        },
+        {
+            "id": "15",
+            "description": "Be lazy",
+            "isDone": true
         }
     ]
 }

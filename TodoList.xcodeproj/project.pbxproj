@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88262B3023956F5A00BC4FD6 /* RKCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88262B2923956F5A00BC4FD6 /* RKCell.swift */; };
+		88262B3123956F5A00BC4FD6 /* RKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88262B2A23956F5A00BC4FD6 /* RKViewController.swift */; };
+		88262B3223956F5A00BC4FD6 /* RKWeekdayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88262B2B23956F5A00BC4FD6 /* RKWeekdayHeader.swift */; };
+		88262B3323956F5A00BC4FD6 /* RKColorSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88262B2C23956F5A00BC4FD6 /* RKColorSettings.swift */; };
+		88262B3423956F5A00BC4FD6 /* RKDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88262B2D23956F5A00BC4FD6 /* RKDate.swift */; };
+		88262B3523956F5A00BC4FD6 /* RKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88262B2E23956F5A00BC4FD6 /* RKManager.swift */; };
+		88262B3623956F5A00BC4FD6 /* RKMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88262B2F23956F5A00BC4FD6 /* RKMonth.swift */; };
+		88262B382395720300BC4FD6 /* TestCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88262B372395720300BC4FD6 /* TestCalendar.swift */; };
+		88262B3A2395910100BC4FD6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88262B392395910100BC4FD6 /* Extensions.swift */; };
 		887BF2D723877A54004C7FFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887BF2D623877A54004C7FFB /* AppDelegate.swift */; };
 		887BF2D923877A54004C7FFB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887BF2D823877A54004C7FFB /* SceneDelegate.swift */; };
 		887BF2E023877A59004C7FFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 887BF2DF23877A59004C7FFB /* Assets.xcassets */; };
@@ -17,9 +26,19 @@
 		887BF2F62387911B004C7FFB /* todos.json in Resources */ = {isa = PBXBuildFile; fileRef = 887BF2F52387911B004C7FFB /* todos.json */; };
 		887BF2FA238793E8004C7FFB /* TodosList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887BF2F9238793E8004C7FFB /* TodosList.swift */; };
 		887BF2FC23879720004C7FFB /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887BF2FB23879720004C7FFB /* UserData.swift */; };
+		88B730AF23955C57001339A4 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B730AE23955C57001339A4 /* Home.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		88262B2923956F5A00BC4FD6 /* RKCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RKCell.swift; path = ../../../../repos/RKCalendar/RKCalendar/Manager/RKCell.swift; sourceTree = "<group>"; };
+		88262B2A23956F5A00BC4FD6 /* RKViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RKViewController.swift; path = ../../../../repos/RKCalendar/RKCalendar/Manager/RKViewController.swift; sourceTree = "<group>"; };
+		88262B2B23956F5A00BC4FD6 /* RKWeekdayHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RKWeekdayHeader.swift; path = ../../../../repos/RKCalendar/RKCalendar/Manager/RKWeekdayHeader.swift; sourceTree = "<group>"; };
+		88262B2C23956F5A00BC4FD6 /* RKColorSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RKColorSettings.swift; path = ../../../../repos/RKCalendar/RKCalendar/Manager/RKColorSettings.swift; sourceTree = "<group>"; };
+		88262B2D23956F5A00BC4FD6 /* RKDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RKDate.swift; path = ../../../../repos/RKCalendar/RKCalendar/Manager/RKDate.swift; sourceTree = "<group>"; };
+		88262B2E23956F5A00BC4FD6 /* RKManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RKManager.swift; path = ../../../../repos/RKCalendar/RKCalendar/Manager/RKManager.swift; sourceTree = "<group>"; };
+		88262B2F23956F5A00BC4FD6 /* RKMonth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RKMonth.swift; path = ../../../../repos/RKCalendar/RKCalendar/Manager/RKMonth.swift; sourceTree = "<group>"; };
+		88262B372395720300BC4FD6 /* TestCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCalendar.swift; sourceTree = "<group>"; };
+		88262B392395910100BC4FD6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		887BF2D323877A54004C7FFB /* TodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		887BF2D623877A54004C7FFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		887BF2D823877A54004C7FFB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -32,6 +51,7 @@
 		887BF2F52387911B004C7FFB /* todos.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = todos.json; sourceTree = "<group>"; };
 		887BF2F9238793E8004C7FFB /* TodosList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosList.swift; sourceTree = "<group>"; };
 		887BF2FB23879720004C7FFB /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		88B730AE23955C57001339A4 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +65,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		88262B2823956EB900BC4FD6 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				88262B2923956F5A00BC4FD6 /* RKCell.swift */,
+				88262B2C23956F5A00BC4FD6 /* RKColorSettings.swift */,
+				88262B2D23956F5A00BC4FD6 /* RKDate.swift */,
+				88262B2E23956F5A00BC4FD6 /* RKManager.swift */,
+				88262B2F23956F5A00BC4FD6 /* RKMonth.swift */,
+				88262B2A23956F5A00BC4FD6 /* RKViewController.swift */,
+				88262B2B23956F5A00BC4FD6 /* RKWeekdayHeader.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		887BF2CA23877A54004C7FFB = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +98,7 @@
 		887BF2D523877A54004C7FFB /* TodoList */ = {
 			isa = PBXGroup;
 			children = (
+				88262B2823956EB900BC4FD6 /* Calendar */,
 				887BF2F223878F51004C7FFB /* Resources */,
 				887BF2ED23878C82004C7FFB /* Models */,
 				887BF2D623877A54004C7FFB /* AppDelegate.swift */,
@@ -73,6 +108,9 @@
 				887BF2E723877A59004C7FFB /* Info.plist */,
 				887BF2E123877A59004C7FFB /* Preview Content */,
 				887BF2F9238793E8004C7FFB /* TodosList.swift */,
+				88B730AE23955C57001339A4 /* Home.swift */,
+				88262B372395720300BC4FD6 /* TestCalendar.swift */,
+				88262B392395910100BC4FD6 /* Extensions.swift */,
 			);
 			path = TodoList;
 			sourceTree = "<group>";
@@ -175,12 +213,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88262B3223956F5A00BC4FD6 /* RKWeekdayHeader.swift in Sources */,
 				887BF2FC23879720004C7FFB /* UserData.swift in Sources */,
 				887BF2D723877A54004C7FFB /* AppDelegate.swift in Sources */,
+				88262B3523956F5A00BC4FD6 /* RKManager.swift in Sources */,
 				887BF2F42387906D004C7FFB /* Data.swift in Sources */,
+				88262B382395720300BC4FD6 /* TestCalendar.swift in Sources */,
 				887BF2D923877A54004C7FFB /* SceneDelegate.swift in Sources */,
+				88262B3023956F5A00BC4FD6 /* RKCell.swift in Sources */,
 				887BF2EF23878CE1004C7FFB /* Todo.swift in Sources */,
 				887BF2FA238793E8004C7FFB /* TodosList.swift in Sources */,
+				88262B3623956F5A00BC4FD6 /* RKMonth.swift in Sources */,
+				88262B3A2395910100BC4FD6 /* Extensions.swift in Sources */,
+				88262B3123956F5A00BC4FD6 /* RKViewController.swift in Sources */,
+				88B730AF23955C57001339A4 /* Home.swift in Sources */,
+				88262B3423956F5A00BC4FD6 /* RKDate.swift in Sources */,
+				88262B3323956F5A00BC4FD6 /* RKColorSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

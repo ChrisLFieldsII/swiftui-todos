@@ -8,13 +8,6 @@
 
 import SwiftUI
 
-// https://stackoverflow.com/questions/56491386/how-to-hide-keyboard-when-using-swiftui
-extension UIApplication {
-    func endEditing() {
-        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
-}
-
 struct TodosList: View {
     @EnvironmentObject var userData: UserData
     @State var editMode: EditMode = .inactive
@@ -24,10 +17,7 @@ struct TodosList: View {
     var dateKey: String
     
     var date: Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM_dd_yyyy"
-        dateFormatter.locale = Locale(identifier: "en_US")
-        return dateFormatter.date(from: self.dateKey)
+        return Date.getDateFromKey(key: self.dateKey)
     }
     
     func dismissKeyboard() {
@@ -42,9 +32,7 @@ struct TodosList: View {
         userData.todos[self.dateKey]?.move(fromOffsets: fromSource, toOffset: toDestination)
     }
     
-    
-    
-    fileprivate func reset() {
+    func reset() {
         todoDescription = ""
         selectedTodo = nil
         self.dismissKeyboard()
@@ -55,7 +43,7 @@ struct TodosList: View {
             return
         }
         
-        let nextId: String = (userData.todos.count + 1).description
+        let nextId: String = UUID().uuidString
         let id: String = selectedTodo?.id ?? nextId
         let isUpdate: Bool = selectedTodo != nil
         
@@ -66,6 +54,9 @@ struct TodosList: View {
         editMode = .active // have to activate edit mode so references are used and dont cause index errors
         // CREATE
         if !isUpdate {
+            if userData.todos[self.dateKey] == nil {
+                userData.todos[self.dateKey] = []
+            }
             userData.todos[self.dateKey]?.append(Todo(id: id, description: todoDescription))
         }
         // UPDATE
@@ -107,35 +98,35 @@ struct TodosList: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack {
-                // EDITING
-                if self.$editMode.wrappedValue == .active {
-                    VStack {
-                        Text(self.getFormattedDate(date: self.date ?? Date()))
-                        TextField("Add Todo", text: self.$todoDescription, onCommit: self.addTodo)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .modifier(ClearTextButton(text: self.$todoDescription))
-                        List {
-                            ForEach(self.userData.todos[self.dateKey] ?? []) { todo in
-                                Toggle(todo.description, isOn: self.getToggleBinding(todo: todo))
+        VStack {
+            // EDITING
+            if self.$editMode.wrappedValue == .active {
+                VStack {
+                    DateHeader(date: self.getFormattedDate(date: self.date ?? Date()))
+                    TextField("Add Todo", text: self.$todoDescription, onCommit: self.addTodo)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .modifier(ClearTextButton(text: self.$todoDescription))
+                    List {
+                        ForEach(self.userData.todos[self.dateKey] ?? []) { todo in
+                            Toggle(todo.description, isOn: self.getToggleBinding(todo: todo))
                                 .disabled(true)
-                            }
-                            .onDelete(perform: self.deleteTodo)
-                            .onMove(perform: self.moveTodo)
                         }
+                        .onDelete(perform: self.deleteTodo)
+                        .onMove(perform: self.moveTodo)
                     }
                 }
-                    
-                // NOT EDITING
-                else {
-                    VStack {
-                        Text(self.getFormattedDate(date: self.date ?? Date()))
-                        TextField("Add Todo", text: self.$todoDescription, onCommit: self.addTodo)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .modifier(ClearTextButton(text: self.$todoDescription))
-                        List {
-                            ForEach(self.userData.todos[self.dateKey]?.indices ?? 0..<0) { todoIndex in
+            }
+                
+            // NOT EDITING
+            else {
+                VStack {
+                    DateHeader(date: self.getFormattedDate(date: self.date ?? Date()))
+                    TextField("Add Todo", text: self.$todoDescription, onCommit: self.addTodo)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .modifier(ClearTextButton(text: self.$todoDescription))
+                    ScrollView {
+                        ForEach(self.userData.todos[self.dateKey]?.indices ?? 0..<0) { todoIndex in
+                            VStack {
                                 HStack {
                                     Button(action: {
                                         let currTodo = self.userData.todos[self.dateKey]?[todoIndex]
@@ -147,15 +138,17 @@ struct TodosList: View {
                                     }
                                     Toggle("", isOn: self.getToggleBinding(todoIndex: todoIndex))
                                 }
+                                Divider()
                             }
+                                .padding(.horizontal, 10)
                         }
                     }
                 }
             }
-            .navigationBarTitle(Text("Todos"))
-            .navigationBarItems(trailing: EditButton())
-            .environment(\.editMode, self.$editMode)
         }
+        .navigationBarTitle(Text("Todos"))
+        .navigationBarItems(trailing: EditButton())
+        .environment(\.editMode, self.$editMode)
     }
 }
 
@@ -179,6 +172,30 @@ struct ClearTextButton: ViewModifier {
     }
 }
 
+struct DateHeader: View {
+    var date: String
+    
+    var body: some View {
+        HStack {
+            Spacer()
+
+            Button(action: {
+                UIApplication.shared.endEditing()
+            }) {
+                Text(date)
+            }
+            .foregroundColor(.blue)
+                .padding(.top, 10)
+
+            Spacer()
+
+            EditButton()
+                .padding(.trailing, 10)
+                .padding(.top, 10)
+        }
+    }
+}
+
 struct KeyboardDismissBackground<Content: View>: View {
     private var content: Content
 
@@ -188,14 +205,14 @@ struct KeyboardDismissBackground<Content: View>: View {
 
     var body: some View {
         Color.white
-        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        .overlay(content)
+            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            .overlay(content)
     }
 }
 
 struct TodosList_Previews: PreviewProvider {
     static var previews: some View {
-        TodosList(dateKey: "12_1_2019")
+        TodosList(dateKey: "11_30_2019")
             .environmentObject(UserData())
             .environment(\.editMode, Binding.constant(.active))
     }

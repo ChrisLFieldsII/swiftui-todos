@@ -11,4 +11,7 @@ import Combine
 
 final class UserData: ObservableObject {
     @Published var todos: [String:[Todo]] = todosData
+    @Published var selectedDate: Date? = nil
+    @Published var showTodos: Bool = false
+    @Published var showCalendar: Bool = true
 }

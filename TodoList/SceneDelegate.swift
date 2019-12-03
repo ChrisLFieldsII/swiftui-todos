@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
-        let mainView = TodosList(dateKey: "11_30_2019")
+        let mainView = Home()
             .environment(\.managedObjectContext, context)
             .environmentObject(UserData())
 
