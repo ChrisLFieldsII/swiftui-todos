@@ -10,6 +10,7 @@ import SwiftUI
 
 struct TodosList: View {
     @EnvironmentObject var userData: UserData
+    @EnvironmentObject var calendarManager: RKManager
     @State var editMode: EditMode = .inactive
     @State var todoDescription: String = ""
     @State var selectedTodo: Todo? = nil
@@ -106,7 +107,7 @@ struct TodosList: View {
             // EDITING
             if self.$editMode.wrappedValue == .active {
                 VStack {
-                    DateHeader(date: self.getFormattedDate(date: self.date ?? Date()), todos: self.todos)
+                    DateHeader(date: self.getFormattedDate(date: self.date ?? Date()), todos: self.todos, userData: self.userData, calendarManager: self.calendarManager)
                     TextField("Add Todo", text: self.$todoDescription, onCommit: self.addTodo)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .modifier(ClearTextButton(text: self.$todoDescription))
@@ -129,7 +130,7 @@ struct TodosList: View {
             // NOT EDITING
             else {
                 VStack {
-                    DateHeader(date: self.getFormattedDate(date: self.date ?? Date()), todos: self.todos)
+                    DateHeader(date: self.getFormattedDate(date: self.date ?? Date()), todos: self.todos, userData: self.userData, calendarManager: self.calendarManager)
                     TextField("Add Todo", text: self.$todoDescription, onCommit: self.addTodo)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .modifier(ClearTextButton(text: self.$todoDescription))
@@ -199,6 +200,8 @@ fileprivate struct NoTodos: View {
 fileprivate struct DateHeader: View {
     var date: String
     var todos: [Todo]
+    var userData: UserData
+    var calendarManager: RKManager
     
     var numComplete: Int {
         let _numComplete = todos.filter { $0.isDone == true }
@@ -207,7 +210,7 @@ fileprivate struct DateHeader: View {
     
     var body: some View {
         HStack {
-            Text("\(self.numComplete)/\(self.todos.count)")
+            Badge(text: "\(self.numComplete)/\(self.todos.count)", backgroundColor: self.userData.getColor(self.numComplete))
             Spacer()
             Button(action: {
                 UIApplication.shared.endEditing()
@@ -239,6 +242,7 @@ struct TodosList_Previews: PreviewProvider {
     static var previews: some View {
         TodosList(dateKey: "11_30_2019")
             .environmentObject(UserData())
+            .environmentObject(RKManager(calendar: Calendar.current, minimumDate: Date(), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0))
             .environment(\.editMode, Binding.constant(.active))
     }
 }

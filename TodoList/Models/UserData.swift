@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 final class UserData: ObservableObject {
     
@@ -15,6 +16,7 @@ final class UserData: ObservableObject {
     @Published var selectedDate: Date? = nil
     @Published var showTodos: Bool = false
     @Published var showCalendar: Bool = true
+    @Published var colors: (lessThan5:Color, lessThan10:Color, moreThan10:Color) = (lessThan5:Color.orange, lessThan10:Color.pink, moreThan10:Color.green)
     
     private static var fileUrl:URL {
         return (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("todos.json"))!
@@ -31,7 +33,9 @@ final class UserData: ObservableObject {
             return loadedTodos
         }
         catch {
-            fatalError("Failed to load todos")
+//            fatalError("Failed to load todos")
+            saveTodos(todosToSave: [:])
+            return [:]
         }
     }
     
@@ -46,5 +50,12 @@ final class UserData: ObservableObject {
         catch {
             fatalError("Failed to save todos: \(error.localizedDescription)")
         }
+    }
+    
+    public func getColor(_ amount: Int) -> Color {
+        if (amount == 0) { return Color.clear }
+        if (amount < 5) { return self.colors.lessThan5 }
+        if (amount < 10) { return self.colors.lessThan10 }
+        return self.colors.moreThan10
     }
 }

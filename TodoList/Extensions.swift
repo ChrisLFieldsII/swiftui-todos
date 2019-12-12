@@ -30,4 +30,31 @@ extension Date {
         dateFormatter.locale = Locale(identifier: "en_US")
         return dateFormatter.date(from: key) ?? Date()
     }
+    
+    static func getYearSince2000(date: Date = Date()) -> Int {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy"
+        dateFormatter.locale = Locale(identifier: "en_US")
+        var dateStr = dateFormatter.string(from: date)
+        dateStr.removeFirst()
+        return Int(dateStr) ?? 0
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    // notification from background
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let id = response.notification.request.identifier
+        print("Received notification with ID = \(id)")
+
+        completionHandler()
+    }
+    
+    // notification while running
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let id = notification.request.identifier
+        print("Received notification with ID = \(id)")
+
+        completionHandler([.sound, .alert])
+    }
 }
