@@ -10,6 +10,7 @@ import SwiftUI
 
 struct Home: View {
     // 0 reps year 2000. only support 2000 and beyond!
+    @State var showInfo: Bool = true
     @State var currYear: Int = Date.getYearSince2000()
     @EnvironmentObject var userData: UserData
     
@@ -40,17 +41,46 @@ struct Home: View {
         self.calendarManager.maximumDate = self.maxDate
     }
     
+    var navbarTrailingItems: some View {
+        Button(action:{withAnimation(.spring()) {self.showInfo.toggle()}}) {
+            Image(systemName: self.showInfo ? "minus" : "plus")
+                .foregroundColor(.blue)
+                .imageScale(.large)
+                .accessibility(label: Text("Toggle Info"))
+                .padding()
+        }
+    }
+    
+    fileprivate var badgeTitles = [BadgeKey("< 5 Todos", Color.orange), BadgeKey("< 10 Todos", Color.pink), BadgeKey("10+ Todos", Color.green)]
+    
     var body: some View {
         NavigationView {
             VStack {
-                VStack(alignment: .leading) {
-                    Divider()
-                    Text("Today: " + Date.getKeyFromDate(date: Date()).replacingOccurrences(of: "_", with: "/"))
-                    Stepper(onIncrement: self.onYearInc, onDecrement: self.onYearDec) {
-                        Text("Current Year: \((2000 + self.currYear).description)")
+                if self.showInfo {
+                    VStack(alignment: .leading) {
+                        Divider()
+                        VStack(alignment: .leading) {
+                            Text("Color Key")
+                            ScrollView(.horizontal) {
+                                HStack {
+                                    ForEach(self.badgeTitles) { badgeTitle in
+                                        Badge(text: badgeTitle.id, backgroundColor: badgeTitle.color)
+                                    }
+                                }
+                                
+                            }
+                        }
+                        
+                        
+                        Text("Today: " + Date.getKeyFromDate(date: Date()).replacingOccurrences(of: "_", with: "/"))
+                        Stepper(onIncrement: self.onYearInc, onDecrement: self.onYearDec) {
+                            Text("Current Year: \((2000 + self.currYear).description)")
+                        }
+                        Divider()
                     }
-                    Divider()
+                    .transition(.slide)
                 }
+                
                 RKViewController(isPresented: self.$userData.showCalendar, rkManager: self.calendarManager, userData: self.userData)
                     .sheet(isPresented: self.$userData.showTodos, onDismiss: { UserData.saveTodos(todosToSave: self.userData.todos) }) {
                         TodosList(dateKey: Date.getKeyFromDate(date: self.userData.selectedDate ?? Date()))
@@ -59,6 +89,7 @@ struct Home: View {
                    }
             }
             .navigationBarTitle("Home")
+            .navigationBarItems(trailing: self.navbarTrailingItems)
         }
     }
 }
@@ -66,5 +97,15 @@ struct Home: View {
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
         Home()
+    }
+}
+
+fileprivate struct BadgeKey: Identifiable {
+    var id: String
+    var color: Color
+    
+    init(_ id: String, _ color: Color) {
+        self.id = id
+        self.color = color
     }
 }

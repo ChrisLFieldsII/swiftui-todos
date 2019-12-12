@@ -53,6 +53,7 @@ final class UserData: ObservableObject {
     }
     
     public func getColor(_ amount: Int) -> Color {
+        print("Getting color with amount \(amount)")
         if (amount == 0) { return Color.clear }
         if (amount < 5) { return self.colors.lessThan5 }
         if (amount < 10) { return self.colors.lessThan10 }

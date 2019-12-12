@@ -210,7 +210,7 @@ fileprivate struct DateHeader: View {
     
     var body: some View {
         HStack {
-            Badge(text: "\(self.numComplete)/\(self.todos.count)", backgroundColor: self.userData.getColor(self.numComplete))
+            Badge(text: "\(self.numComplete)/\(self.todos.count)", backgroundColor: Color.clear)
             Spacer()
             Button(action: {
                 UIApplication.shared.endEditing()
