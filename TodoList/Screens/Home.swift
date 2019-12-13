@@ -8,6 +8,8 @@
 
 import SwiftUI
 
+
+
 struct Home: View {
     // 0 reps year 2000. only support 2000 and beyond!
     @State var showInfo: Bool = true
@@ -42,12 +44,22 @@ struct Home: View {
     }
     
     var navbarTrailingItems: some View {
-        Button(action:{withAnimation(.spring()) {self.showInfo.toggle()}}) {
-            Image(systemName: self.showInfo ? "minus" : "plus")
-                .foregroundColor(.blue)
-                .imageScale(.large)
-                .accessibility(label: Text("Toggle Info"))
-                .padding()
+        HStack {
+            Button(action:{withAnimation(.spring()) {self.showInfo.toggle()}}) {
+                Image(systemName: self.showInfo ? "minus" : "plus")
+                    .foregroundColor(.blue)
+                    .imageScale(.large)
+                    .accessibility(label: Text("Toggle Info"))
+                    .padding()
+            }
+            Button(action: { self.userData.showModal = true; self.userData.currentModal = .SETTINGS }) {
+                Image(systemName: "ellipsis.circle")
+                    .foregroundColor(.blue)
+                    .imageScale(.large)
+                    .accessibility(label: Text("Toggle Settings"))
+                    .rotationEffect(.degrees(90))
+                    .padding()
+            }
         }
     }
     
@@ -67,10 +79,8 @@ struct Home: View {
                                         Badge(text: badgeTitle.id, backgroundColor: badgeTitle.color)
                                     }
                                 }
-                                
                             }
                         }
-                        
                         
                         Text("Today: " + Date.getKeyFromDate(date: Date()).replacingOccurrences(of: "_", with: "/"))
                         Stepper(onIncrement: self.onYearInc, onDecrement: self.onYearDec) {
@@ -82,10 +92,15 @@ struct Home: View {
                 }
                 
                 RKViewController(isPresented: self.$userData.showCalendar, rkManager: self.calendarManager, userData: self.userData)
-                    .sheet(isPresented: self.$userData.showTodos, onDismiss: { UserData.saveTodos(todosToSave: self.userData.todos) }) {
-                        TodosList(dateKey: Date.getKeyFromDate(date: self.userData.selectedDate ?? Date()))
-                            .environmentObject(self.userData)
-                            .environmentObject(self.calendarManager)
+                    .sheet(isPresented: self.$userData.showModal, onDismiss: { UserData.saveTodos(todosToSave: self.userData.todos) }) {
+                        if self.userData.currentModal == .SETTINGS {
+                            Settings()
+                        }
+                        else {
+                            TodosList(dateKey: Date.getKeyFromDate(date: self.userData.selectedDate ?? Date()))
+                                .environmentObject(self.userData)
+                                .environmentObject(self.calendarManager)
+                        }
                    }
             }
             .navigationBarTitle("Home")

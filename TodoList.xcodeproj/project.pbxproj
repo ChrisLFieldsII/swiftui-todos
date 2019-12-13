@@ -26,6 +26,8 @@
 		887BF2F62387911B004C7FFB /* todos.json in Resources */ = {isa = PBXBuildFile; fileRef = 887BF2F52387911B004C7FFB /* todos.json */; };
 		887BF2FA238793E8004C7FFB /* TodosList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887BF2F9238793E8004C7FFB /* TodosList.swift */; };
 		887BF2FC23879720004C7FFB /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887BF2FB23879720004C7FFB /* UserData.swift */; };
+		8897D34823A44F8100A0089A /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8897D34723A44F8000A0089A /* Enums.swift */; };
+		8897D34C23A4568D00A0089A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8897D34B23A4568D00A0089A /* Settings.swift */; };
 		88A7373823965ABB00C0FC44 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A7373723965ABB00C0FC44 /* Badge.swift */; };
 		88B730AF23955C57001339A4 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B730AE23955C57001339A4 /* Home.swift */; };
 /* End PBXBuildFile section */
@@ -52,6 +54,8 @@
 		887BF2F52387911B004C7FFB /* todos.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = todos.json; sourceTree = "<group>"; };
 		887BF2F9238793E8004C7FFB /* TodosList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosList.swift; sourceTree = "<group>"; };
 		887BF2FB23879720004C7FFB /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		8897D34723A44F8000A0089A /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		8897D34B23A4568D00A0089A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		88A7373723965ABB00C0FC44 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		88B730AE23955C57001339A4 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +104,8 @@
 		887BF2D523877A54004C7FFB /* TodoList */ = {
 			isa = PBXGroup;
 			children = (
+				8897D34A23A452FA00A0089A /* Screens */,
+				8897D34923A452E400A0089A /* Comps */,
 				88262B2823956EB900BC4FD6 /* Calendar */,
 				887BF2F223878F51004C7FFB /* Resources */,
 				887BF2ED23878C82004C7FFB /* Models */,
@@ -109,9 +115,7 @@
 				887BF2E423877A59004C7FFB /* LaunchScreen.storyboard */,
 				887BF2E723877A59004C7FFB /* Info.plist */,
 				887BF2E123877A59004C7FFB /* Preview Content */,
-				887BF2F9238793E8004C7FFB /* TodosList.swift */,
-				88B730AE23955C57001339A4 /* Home.swift */,
-				88A7373723965ABB00C0FC44 /* Badge.swift */,
+				8897D34723A44F8000A0089A /* Enums.swift */,
 				88262B372395720300BC4FD6 /* TestCalendar.swift */,
 				88262B392395910100BC4FD6 /* Extensions.swift */,
 				882292BE239E1C3000D65974 /* LocalNotificationManager.swift */,
@@ -142,6 +146,24 @@
 				887BF2F52387911B004C7FFB /* todos.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		8897D34923A452E400A0089A /* Comps */ = {
+			isa = PBXGroup;
+			children = (
+				88A7373723965ABB00C0FC44 /* Badge.swift */,
+			);
+			path = Comps;
+			sourceTree = "<group>";
+		};
+		8897D34A23A452FA00A0089A /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				88B730AE23955C57001339A4 /* Home.swift */,
+				887BF2F9238793E8004C7FFB /* TodosList.swift */,
+				8897D34B23A4568D00A0089A /* Settings.swift */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,7 +254,9 @@
 				88262B3123956F5A00BC4FD6 /* RKViewController.swift in Sources */,
 				88B730AF23955C57001339A4 /* Home.swift in Sources */,
 				88262B3423956F5A00BC4FD6 /* RKDate.swift in Sources */,
+				8897D34823A44F8100A0089A /* Enums.swift in Sources */,
 				88262B3323956F5A00BC4FD6 /* RKColorSettings.swift in Sources */,
+				8897D34C23A4568D00A0089A /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,7 +14,8 @@ final class UserData: ObservableObject {
     
     @Published var todos: [String:[Todo]] = loadTodos()
     @Published var selectedDate: Date? = nil
-    @Published var showTodos: Bool = false
+    @Published var showModal: Bool = false
+    @Published var currentModal: CurrentModal = .TODOS
     @Published var showCalendar: Bool = true
     @Published var colors: (lessThan5:Color, lessThan10:Color, moreThan10:Color) = (lessThan5:Color.orange, lessThan10:Color.pink, moreThan10:Color.green)
     
